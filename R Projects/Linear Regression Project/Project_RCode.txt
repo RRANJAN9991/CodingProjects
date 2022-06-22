@@ -1,0 +1,185 @@
+> dataIV <- read.csv('P1A_IV48179.csv', header = TRUE)
+> dataDV <- read.csv('P1A_DV48179.csv', header = TRUE)
+> PartA <- merge(dataIV, dataDV, by = 'ID')
+> str(PartA)
+'data.frame':   715 obs. of  3 variables:
+ $ ID: int  1 2 3 4 5 6 7 8 9 10 ...
+ $ IV: num  7.21 6.49 5.01 7.55 6.69 ...
+ $ DV: num  39.3 40.1 29.7 NA 33 ...
+> library(mice)
+
+Attaching package: ‘mice’
+
+The following objects are masked from ‘package:base’:
+
+    cbind, rbind
+
+Warning message:
+package ‘mice’ was built under R version 3.5.3 
+> PartA_incomplete <- PartA
+> md.pattern(PartA_incomplete)
+    ID IV  DV    
+491  1  1   1   0
+153  1  1   0   1
+52   1  0   1   1
+19   1  0   0   2
+     0 71 172 243
+> PartA_impute <- PartA[is.na(PartA$IV) == TRUE | 
++ !is.na(PartA$DV) == TRUE]
+Error in `[.data.frame`(PartA, is.na(PartA$IV) == TRUE | !is.na(PartA$DV) ==  : 
+  undefined columns selected
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE | !is.na(PartA$DV) == TRUE)
+Error: unexpected ')' in "PartA_impute <- PartA[!is.na(PartA$IV) == TRUE | !is.na(PartA$DV) == TRUE)"
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE | !is.na(PartA$DV) == TRUE]
+Error in `[.data.frame`(PartA, !is.na(PartA$IV) == TRUE | !is.na(PartA$DV) ==  : 
+  undefined columns selected
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE | !is.na(PartA$DV) == TRUE]|
++ md.pattern(PartA_incomplete)
+Error in `[.data.frame`(PartA, !is.na(PartA$IV) == TRUE | !is.na(PartA$DV) ==  : 
+  undefined columns selected
+> 
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE|!is.na(PartA$DV) == TRUE]
+Error in `[.data.frame`(PartA, !is.na(PartA$IV) == TRUE | !is.na(PartA$DV) ==  : 
+  undefined columns selected
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE || !is.na(PartA$DV) == TRUE]
+> 
+> md
+
+> md.pattern(PartA_impute)
+    ID IV  DV    
+491  1  1   1   0
+153  1  1   0   1
+52   1  0   1   1
+19   1  0   0   2
+     0 71 172 243
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE || !is.na(PartA$DV) == TRUE]
+> md.pattern(PartA_impute)
+    ID IV  DV    
+491  1  1   1   0
+153  1  1   0   1
+52   1  0   1   1
+19   1  0   0   2
+     0 71 172 243
+> install.packages('mice')
+Installing package into ‘C:/Users/ranja/Documents/R/win-library/3.5’
+(as ‘lib’ is unspecified)
+--- Please select a CRAN mirror for use in this session ---
+Warning: package ‘mice’ is in use and will not be installed
+> PartA_impute <- PartA[!is.na(PartA$IV) == TRUE | !is.na(PartA$DV) == TRUE,]
+> md.pattern(PartA_impute)
+    ID IV  DV    
+491  1  1   1   0
+153  1  1   0   1
+52   1  0   1   1
+     0 52 153 205
+> impute <- mice(PartA_impute, method = "norm.boot", printFlag = FALSE)
+> PartA_complete <- complete(impute)
+> md.pattern(PartA_complete_
++ 
++ 
++ d
+Error: unexpected symbol in:
+"
+d"
+> md.pattern(PartA_complete)
+ /\     /\
+{  `---'  }
+{  O   O  }
+==>  V <==  No need for mice. This data set is completely observed.
+ \  \|/  /
+  `-----'
+
+    ID IV DV  
+696  1  1  1 0
+     0  0  0 0
+> model <- lm(DV ~ IV, data = PartA_complete)
+> summary(model)
+
+Call:
+lm(formula = DV ~ IV, data = PartA_complete)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-27.5469  -6.4430  -0.0049   6.0414  27.1880 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  11.4348     1.0898   10.49   <2e-16 ***
+IV            4.7334     0.1708   27.71   <2e-16 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 9.197 on 694 degrees of freedom
+Multiple R-squared:  0.5253,    Adjusted R-squared:  0.5246 
+F-statistic: 767.9 on 1 and 694 DF,  p-value: < 2.2e-16
+
+> install.packages(knitr)
+Error in install.packages(knitr) : object 'knitr' not found
+> install.packages('knitr')
+Installing package into ‘C:/Users/ranja/Documents/R/win-library/3.5’
+(as ‘lib’ is unspecified)
+also installing the dependencies ‘mime’, ‘evaluate’, ‘highr’, ‘markdown’, ‘yaml’, ‘xfun’
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/mime_0.9.zip'
+Content type 'application/zip' length 48051 bytes (46 KB)
+downloaded 46 KB
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/evaluate_0.14.zip'
+Content type 'application/zip' length 75811 bytes (74 KB)
+downloaded 74 KB
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/highr_0.8.zip'
+Content type 'application/zip' length 48196 bytes (47 KB)
+downloaded 47 KB
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/markdown_1.1.zip'
+Content type 'application/zip' length 189539 bytes (185 KB)
+downloaded 185 KB
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/yaml_2.2.1.zip'
+Content type 'application/zip' length 206208 bytes (201 KB)
+downloaded 201 KB
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/xfun_0.12.zip'
+Content type 'application/zip' length 178226 bytes (174 KB)
+downloaded 174 KB
+
+trying URL 'https://mirror.las.iastate.edu/CRAN/bin/windows/contrib/3.5/knitr_1.28.zip'
+Content type 'application/zip' length 1426079 bytes (1.4 MB)
+downloaded 1.4 MB
+
+package ‘mime’ successfully unpacked and MD5 sums checked
+package ‘evaluate’ successfully unpacked and MD5 sums checked
+package ‘highr’ successfully unpacked and MD5 sums checked
+package ‘markdown’ successfully unpacked and MD5 sums checked
+package ‘yaml’ successfully unpacked and MD5 sums checked
+package ‘xfun’ successfully unpacked and MD5 sums checked
+package ‘knitr’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+        C:\Users\ranja\AppData\Local\Temp\RtmpAl8Wyr\downloaded_packages
+> kable(anova(M), caption = 'ANOVA Table')
+Error in kable(anova(M), caption = "ANOVA Table") : 
+  could not find function "kable"
+> library(knitr)
+Warning message:
+package ‘knitr’ was built under R version 3.5.3 
+> kable(anova(model), caption = 'ANOVA Table')
+
+
+|          |  Df|   Sum Sq|     Mean Sq|  F value| Pr(>F)|
+|:---------|---:|--------:|-----------:|--------:|------:|
+|IV        |   1| 64958.14| 64958.14163| 767.9394|      0|
+|Residuals | 694| 58703.79|    84.58759|       NA|     NA|
+> plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV, xlab = 'IV', 
+Error: unexpected input in "plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV, xlab = 'IV', "
+> plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV, xlab = 'IV', ylab = 'DV', pch = 20)
+Error: unexpected input in "plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV, xlab = 'IV', ylab = 'DV', pch = 20)"
+> plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV', xlab = 'IV', ylab = 'DV', pch = 20)
+Error: unexpected input in "plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV', xlab = 'IV', ylab = 'DV', pch = 20)"
+> plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV', xlab = 'IV', ylab = 'DV', pch = 20)
+Error: unexpected input in "plot(PartA_complete%DV ~ PartA_complete$IV, main = 'Scatter : DV ~ IV', xlab = 'IV', ylab = 'DV', pch = 20)"
+> plot(PartA_complete$DV ~ PartA_complete$IV, main='Scatter : DV ~ IV', xlab='IV', ylab='DV', pch=20)
+> abline(model, col = 'red', lty = 3, lwd = 2)
+> legend('topleft', legend = 'Estimated Regression Line', lty = 3, lwd = 2, col = 'red')
+> 
