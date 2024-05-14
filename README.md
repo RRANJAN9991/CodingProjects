@@ -2,6 +2,7 @@
 
 #### Technical Skills: Python, R, SQL, MATLAB, Java, Tableau, Databricks, Excel
 
+
 ## Education								       		
 - M.S., Computer and Data Science Focus: Applied Data Analytics	| Boston University | GPA: 3.50 | Graduated May 2024	 			        		
 - B.S., Double Major: Applied Mathematics and Statistics; Economics | Stony Brook University | Average Major GPA: 3.53 | Graduated May 2021
