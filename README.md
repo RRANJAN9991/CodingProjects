@@ -41,7 +41,7 @@
 
 
 ## Exam Required Certification
-**Associate Level Python Programmer from Python Institute**
+### Associate Level Python Programmer from Python Institute
 [Certification Received](/RahulRanjan_PythonCertifications.pdf)
 
 ## Graduate Student Projects
