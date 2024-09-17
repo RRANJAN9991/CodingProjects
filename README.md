@@ -66,4 +66,4 @@ In this project, the goal was to predict NBA player positions using machine lear
 
 The analysis highlighted the importance of features like assists, defensive rebounds, blocks, offensive rebounds, and shooting percentages in predicting player positions. These features align with traditional basketball roles despite the modern NBA's evolution. The study also identified limitations, such as relying solely on statistics from the previous season and the dataset partitioning strategy. Addressing these limitations, such as incorporating historical data and exploring alternative dataset partitioning strategies, could improve the model's predictive accuracy and robustness.
 
-
+ok
