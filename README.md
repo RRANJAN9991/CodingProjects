@@ -1,7 +1,7 @@
 
 # Recent M.S. Graduate With Data Analyst Experience  
 
-#### Technical Skills: Python, R, SQL, MATLAB, Java, Tableau, Databricks, Excelm
+#### Technical Skills: Python, R, SQL, MATLAB, Java, Tableau, Databricks, Excel
 
 ## Education 
 
