@@ -60,7 +60,7 @@ The model demonstrated the power of Bayesian Networks in capturing complex depen
 
 
 ### Deciphering NBA Player Positions: A Machine Learning Approach
-[Project Content](/RahulRanjan_FinalProjectPart3_CS677 (2).zip)
+[Project Content](/RahulRanjan_FinalProjectPart3_CS677.zip)
 
 In this project, the goal was to predict NBA player positions using machine learning models. The dataset was cleaned to address challenges like multiple entries for traded players, ensuring each player was represented once. Feature selection focused on key basketball statistics like scoring, efficiency, rebounds, assists, steals, blocks, turnovers, and fouls. Various machine learning models were trained and tested, including Logistic Regression, Random Forest Classifier, and Support Vector Machine (SVM). The Random Forest Classifier emerged as the best-performing model, achieving high accuracy across different player positions.
 
